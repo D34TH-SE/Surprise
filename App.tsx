@@ -27,7 +27,7 @@ Always waiting for you,
  *    Example: "public/img/photo.jpg" becomes "/img/photo.jpg"
  */
 
-const MAIN_IMAGE = "/img/Picture5.jpg"; // Replace with your file name in public/img/
+const MAIN_IMAGE = "/img/box_tee.webp"; // Replace with your file name in public/img/
 
 const GALLERY_IMAGES = [
   "/img/Picture5.jpg", // Replace these with your actual filenames

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Lock, User, Sparkles } from 'lucide-react';
+import { User, Sparkles } from 'lucide-react';
 
 interface LoginProps {
   onLoginSuccess: () => void;
@@ -8,22 +8,21 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [fullName, setFullName] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (fullName === 'Hanny Jem Zabate' && password === '010806') {
+    // Validate only based on the full name
+    if (fullName.trim() === 'Hanny Jem Zabate') {
       onLoginSuccess();
     } else {
-      setError('Incorrect details. Please try again.');
+      setError('Incorrect name. Please enter your full name correctly.');
       setTimeout(() => setError(''), 3000);
     }
   };
 
   const autoFill = () => {
     setFullName('Hanny Jem Zabate');
-    setPassword('010806');
   };
 
   return (
@@ -32,8 +31,8 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         <div className="inline-block p-4 bg-violet-600 rounded-full mb-4 shadow-lg animate-bounce">
           <Sparkles className="w-8 h-8 text-yellow-300" />
         </div>
-        <h2 className="text-3xl font-christmas text-white mb-2">Please Log In</h2>
-        <p className="text-violet-100/70">Please enter your credentials</p>
+        <h2 className="text-3xl font-christmas text-white mb-2">Welcome Back</h2>
+        <p className="text-violet-100/70">Please enter your magic name</p>
       </div>
 
       <form onSubmit={handleLogin} className="space-y-6">
@@ -45,17 +44,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-violet-200/50 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
-          />
-        </div>
-
-        <div className="relative">
-          <Lock className="absolute left-3 top-3.5 w-5 h-5 text-violet-200" />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-violet-200/50 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
+            autoFocus
           />
         </div>
 
@@ -76,7 +65,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           onClick={autoFill}
           className="text-xs text-violet-200/50 hover:text-violet-200 underline transition-colors"
         >
-          (Hint: Your Full Name & Birthdate)
+          (Hint: Use Your Full Name)
         </button>
       </div>
     </div>
